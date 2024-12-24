@@ -93,7 +93,7 @@ function LoginPageContent() {
             )}
           </div>
           <h2 className="mt-8 max-w-xl text-center text-3xl font-bold leading-tight text-gray-700 dark:text-gray-200">
-            Transform Your Operations with ThyroSense Devices
+            ThyroSense: Revolutionizing Thyroid Health with Precision Technology
           </h2>
         </div>
 
