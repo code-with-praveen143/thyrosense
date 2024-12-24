@@ -210,12 +210,11 @@ export default function UserManagement() {
                 className="block w-full p-2 border border-gray-300 rounded-md"
               >
                 <option value="">Select an Alpha Name</option>
-                {users?.map((user) => (
-                  <option key={user._id} value={user.alpha}>
-                    {user.alpha}
-                  </option>
-                ))}
-              </select>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+
+               </select>
               <Button
                 className="mt-4 bg-primary text-white"
                 onClick={handleNext}
@@ -260,8 +259,7 @@ export default function UserManagement() {
                   onChange={(e) => setRole(e.target.value)}
                   className="block w-full p-2 border border-gray-300 rounded-md"
                 >
-                  <option value="tester">Tester</option>
-                  <option value="piolet">Piolet</option>
+                  <option value="user">User</option>
                   <option value="admin">Admin</option>
                 </select>
               </div>
