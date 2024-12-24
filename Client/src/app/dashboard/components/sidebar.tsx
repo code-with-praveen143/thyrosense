@@ -9,7 +9,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   LayoutDashboard,
   Router,
-  User
+  User,
+  Database
 } from "lucide-react";
 
 const sidebarNavItems = [
@@ -27,6 +28,11 @@ const sidebarNavItems = [
     title: "User Management",
     href: "/dashboard/user-management",
     icon: User,
+  },
+  {
+    title: "Data management",
+    href: "/dashboard/data-management",
+    icon: Database,
   }
 ];
 

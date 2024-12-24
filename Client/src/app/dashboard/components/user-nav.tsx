@@ -5,17 +5,7 @@ import { useTheme } from "next-themes";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  LayoutDashboard,
-  GraduationCap,
-  CreditCard,
-  FileUp,
-  Printer,
-  Users,
-  Briefcase,
-  UserCog,
-  CalendarRange,
-} from "lucide-react";
+import { LayoutDashboard, GraduationCap, CreditCard, FileUp, Printer, Users, Briefcase, UserCog, CalendarRange } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -29,7 +19,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { Router, LogOut, User, Sun, Moon, Menu, Bot } from "lucide-react";
+import { Router, LogOut, User, Sun, Moon, Menu, Database } from 'lucide-react';
 import logo from "../../../utils/logo2.jpg";
 import logo3 from "../../../utils/logo3.jpeg";
 
@@ -48,6 +38,11 @@ const NavbarItems = [
     title: "User Management",
     href: "/dashboard/user-management",
     icon: User,
+  },
+  {
+    title: "Data management",
+    href: "/dashboard/data-management",
+    icon: Database,
   }
 ];
 
@@ -85,9 +80,13 @@ export function Navbar() {
   React.useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth < 1024);
+      if (window.innerWidth >= 1024) {
+        setIsOpen(false);
+      }
     };
 
     window.addEventListener("resize", handleResize);
+    handleResize(); // Call once to set initial state
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -130,7 +129,7 @@ export function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center mx-auto relative">
+        <div className="container flex h-16 items-center justify-between px-4 md:px-6 lg:px-8">
           <Button
             variant="ghost"
             size="icon"
@@ -138,20 +137,21 @@ export function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
           >
             <Menu className="h-6 w-6" />
+            <span className="sr-only">Toggle menu</span>
           </Button>
 
-          <div className="flex flex-row space-x-2 absolute left-1/2 transform -translate-x-1/2 lg:relative lg:left-0 lg:transform-none lg:flex-1">
+          <div className="flex items-center space-x-2">
             <Image
               src={theme === "dark" ? logo : logo3}
               alt="Logo"
-              width={150}
+              width={40}
               height={40}
-              className="h-8 w-auto px-2 rounded-md"
+              className="h-8 w-auto rounded-md"
             />
-            <span className="text-[18px] md:text-[26px] font-bold py-1">ThyroSense</span>
+            <span className="text-lg font-bold md:text-xl lg:text-2xl">ThyroSense</span>
           </div>
 
-          <div className="flex items-center gap-2 md:gap-4 ml-auto">
+          <div className="flex items-center gap-2 md:gap-4">
             {!windowWidth && (
               <>
                 <ThemeToggle />
@@ -256,7 +256,7 @@ export function Navbar() {
 
       <NavigationMenu.Root className="lg:hidden">
         <NavigationMenu.List
-          className={`fixed w-full bg-background border-b z-40 shadow-lg transition-transform ${
+          className={`fixed inset-x-0 top-16 bg-background border-b z-40 shadow-lg transition-transform duration-300 ease-in-out ${
             isOpen ? "translate-y-0" : "-translate-y-full"
           }`}
         >
@@ -265,13 +265,13 @@ export function Navbar() {
               <Button
                 key={item.href}
                 variant={pathname === item.href ? "secondary" : "ghost"}
-                className="w-full justify-start mb-1"
+                className="w-full justify-start mb-2 px-4 py-2 text-left"
                 asChild
                 onClick={() => setIsOpen(false)}
               >
                 <Link href={item.href}>
-                  <item.icon className="mr-2 h-4 w-4" />
-                  {item.title}
+                  <item.icon className="mr-2 h-4 w-4 inline-block" />
+                  <span>{item.title}</span>
                 </Link>
               </Button>
             ))}
@@ -281,3 +281,4 @@ export function Navbar() {
     </>
   );
 }
+
