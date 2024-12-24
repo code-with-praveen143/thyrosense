@@ -200,7 +200,7 @@ export default function UserManagement() {
                   type="text"
                   value={generatedUsername}
                   readOnly
-                  className="block w-full p-2 border border-gray-300 rounded-md bg-gray-100"
+                  className="block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
               <div className="mb-4">
@@ -209,7 +209,7 @@ export default function UserManagement() {
                   type="text"
                   value={generatedPassword}
                   readOnly
-                  className="block w-full p-2 border border-gray-300 rounded-md bg-gray-100"
+                  className="block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
               <div className="mb-4">
